@@ -9,6 +9,10 @@ void processEvent(sf::Event e) {
 	case sf::Event::Closed:
 		window.Close();
 		break;
+	case sf::Event::KeyPressed:
+		if (e.Key.Code == sf::Key::Escape)
+			window.Close();
+		break;
 	}
 }
 
