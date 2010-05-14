@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include "player.h"
 
 sf::RenderWindow window;
+Player player;
 
 void processEvent(sf::Event e) {
 	switch (e.Type) {
@@ -26,7 +28,10 @@ int main (int argv, char **argc) {
 		if (!window.IsOpened())
 			break;
 
+		player.update();
+
 		window.Draw(bgSprite);
+		window.Draw(player.s);
 		window.Display();
 	}
 }
