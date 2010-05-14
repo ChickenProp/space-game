@@ -1,0 +1,2 @@
+Program("#space-game", Glob("*.cpp"),
+        LIBS=['GL', 'GLU', 'sfml-system', 'sfml-window', 'sfml-graphics'])
