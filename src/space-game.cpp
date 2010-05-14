@@ -13,6 +13,11 @@ void processEvent(sf::Event e) {
 int main (int argv, char **argc) {
 	window.Create(sf::VideoMode(640, 480, 32), "Space shooter");
 
+	sf::Image bgImage;
+	bgImage.LoadFromFile("media/background.tga");
+	sf::Sprite bgSprite;
+	bgSprite.SetImage(bgImage);
+
 	while (window.IsOpened()) {
 		sf::Event ev;
 		while (window.GetEvent(ev))
@@ -21,6 +26,7 @@ int main (int argv, char **argc) {
 		if (!window.IsOpened())
 			break;
 
+		window.Draw(bgSprite);
 		window.Display();
 	}
 }
