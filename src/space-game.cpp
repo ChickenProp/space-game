@@ -18,6 +18,7 @@ void processEvent(sf::Event e) {
 
 int main (int argv, char **argc) {
 	window.Create(sf::VideoMode(640, 480, 32), "Space shooter");
+	window.SetFramerateLimit(60);
 
 	sf::Image bgImage;
 	bgImage.LoadFromFile("media/background.tga");
