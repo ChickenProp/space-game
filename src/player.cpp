@@ -33,7 +33,7 @@ Player::Player() {
 
 	laserSoundBuffer.LoadFromFile("media/player-shoot.wav");
 	laserSound.SetBuffer(laserSoundBuffer);
-	laserSound.SetVolume(50);
+	laserSound.SetVolume(25);
 }
 
 void Player::update() {
