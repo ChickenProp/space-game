@@ -10,6 +10,8 @@ public:
 	sf::Sprite s;
 	sf::Vector2f vel;
 
+	float screenLeft;
+
 	void update();
 };
 
