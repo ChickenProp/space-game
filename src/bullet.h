@@ -5,12 +5,12 @@
 
 class Bullet : public Body {
 public:
-	Bullet(sf::Vector2f position, sf::Vector2f velocity);
-
-	void update();
+	Bullet(b2Vec2 position, float angle, b2Vec2 initialVelocity);
 
 	static bool static_init;
 	static sf::Image image;
+
+	void update();
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "math.h"
 #include "conf.h"
+#include "bullet.h"
 
 Player::Player() {
 	image.LoadFromFile("media/player-ship.tga");
@@ -10,7 +11,7 @@ Player::Player() {
 	s.SetCenter((float)image.GetWidth()/2, (float)image.GetHeight()/2);
 	s.SetPosition(50, 240);
 
-	setRateOfFire(10);
+	setRateOfFire(5);
 	shotClock.Reset();
 
 	b2BodyDef bodyDef;
@@ -19,11 +20,11 @@ Player::Player() {
 	b = G::physics->CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
+	dynamicBox.SetAsBox(0.2f, 0.1f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 1.0f;
+	fixtureDef.density = 1.0f / (0.2f * 0.1f);
 	fixtureDef.friction = 0.0f;
 
 	b->CreateFixture(&fixtureDef);
@@ -55,8 +56,6 @@ void Player::update() {
 
 	b->SetTransform(b->GetPosition(), -atan2(mouse.y, mouse.x));
 
-	if (in.IsMouseButtonDown(sf::Mouse::Left))
-		tryToShoot();
 }
 
 void Player::setRateOfFire(float r) {
@@ -70,6 +69,8 @@ void Player::tryToShoot() {
 
 void Player::shoot() {
 	shotClock.Reset();
-	printf("shoot!\n");
+	Bullet *bul = new Bullet(b->GetPosition() + bPolar(0.25, -b->GetAngle()),
+	                         b->GetAngle(), b->GetLinearVelocity());
+	G::world->addBody(bul);
 	laserSound.Play();
 }

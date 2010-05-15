@@ -17,6 +17,9 @@ void World::addBody(Body *newBody) {
 }
 
 void World::update() {
+	if (G::window.GetInput().IsMouseButtonDown(sf::Mouse::Left))
+		G::player->tryToShoot();
+
 	for (bodyit_t it = bodies.begin(); it != bodies.end(); it++) {
 		if (*it == NULL)
 			continue;
