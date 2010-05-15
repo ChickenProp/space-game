@@ -1,6 +1,10 @@
 To build: make
+(Or scons, if you're that way inclined.)
 To run: ./space-game
 
-WASD to move, mouse to point, click to shoot. If you're on dvorak, edit conf.h to get ,AOE for movement.
+WASD to move, mouse to point, click to shoot. If you're on dvorak, edit conf.h
+to get ,AOE for movement. ESC to quit.
 
 That's all there is.
+
+Requires SFML and Box2D.
