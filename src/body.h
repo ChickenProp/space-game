@@ -2,11 +2,12 @@
 #define _BODY_H
 
 #include <SFML/Graphics.hpp>
+#include <Box2D/Box2D.h>
 
 class Body {
 public:
 	sf::Sprite s;
-	sf::Vector2f vel, acc;
+	b2Body *b;
 	virtual void update();
 };
 

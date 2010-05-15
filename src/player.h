@@ -14,6 +14,7 @@ public:
 	float screenLeft;
 
 	virtual void update();
+	void draw();
 };
 
 #endif
