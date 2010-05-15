@@ -4,13 +4,11 @@
 #include "conf.h"
 
 Player::Player() {
-	zeroVel = sf::Vector2f(1, 0);
 	image.LoadFromFile("media/player-ship.tga");
 
 	s.SetImage(image);
 	s.SetCenter((float)image.GetWidth()/2, (float)image.GetHeight()/2);
 	s.SetPosition(50, 240);
-	screenLeft = 0;
 
 	setRateOfFire(10);
 	shotClock.Reset();
@@ -37,8 +35,6 @@ Player::Player() {
 }
 
 void Player::update() {
-	screenLeft += 1;
-
 	const sf::Input &in = G::window.GetInput();
 
 	b2Vec2 center = b->GetWorldCenter();
@@ -54,19 +50,13 @@ void Player::update() {
 	if (in.IsKeyDown(KEY_RIGHT))
 		b->ApplyLinearImpulse(acc*b2Vec2(1, 0), center);
 
-	sf::Vector2f Gmouse(in.GetMouseX()+screenLeft, in.GetMouseY());
+	sf::Vector2f Gmouse(in.GetMouseX(), in.GetMouseY());
 	sf::Vector2f mouse = Gmouse - s.GetPosition();
 
 	b->SetTransform(b->GetPosition(), -atan2(mouse.y, mouse.x));
 
 	if (in.IsMouseButtonDown(sf::Mouse::Left))
 		tryToShoot();
-}
-
-void Player::draw() {
-	s.SetPosition(b2s( 100.0f * b->GetPosition() + b2Vec2(screenLeft, 0) ));
-	s.SetRotation(r2d(b->GetAngle()));
-	G::window.Draw(s);
 }
 
 void Player::setRateOfFire(float r) {

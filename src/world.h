@@ -10,6 +10,9 @@ class World {
 public:
 	World();
 
+	static sf::Image bgImage;
+	sf::Sprite bgSprite1, bgSprite2;
+
 	void addBody(Body *newBody);
 	std::vector<Body*> bodies;
 

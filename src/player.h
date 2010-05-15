@@ -10,12 +10,7 @@ public:
 	Player();
 	sf::Image image;
 
-	sf::Vector2f zeroVel;
-
-	float screenLeft;
-
 	virtual void update();
-	void draw();
 
 	float fireDelay;
 	sf::Clock shotClock;
