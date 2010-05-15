@@ -1,7 +1,7 @@
 #ifndef _CONF_H
 #define _CONF_H
 
-#define DVORAK 1
+#define DVORAK 0
 
 #if DVORAK
 #  define KEY_UP sf::Key::Comma
