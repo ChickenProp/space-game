@@ -1,3 +1,4 @@
 Program("#space-game", Glob("*.cpp"),
-        LIBS=['GL', 'GLU', 'sfml-system', 'sfml-window', 'sfml-graphics', 'Box2D'],
+        LIBS=['GL', 'GLU', 'Box2D',
+              'sfml-system', 'sfml-window', 'sfml-graphics', 'sfml-audio'],
         CPPFLAGS="-g")

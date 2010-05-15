@@ -2,6 +2,7 @@
 #define _PLAYER_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "body.h"
 
 class Player : public Body {
@@ -21,6 +22,9 @@ public:
 	void setRateOfFire(float r);
 	void tryToShoot();
 	void shoot();
+
+	sf::SoundBuffer laserSoundBuffer;
+	sf::Sound laserSound;
 };
 
 #endif

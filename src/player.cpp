@@ -30,6 +30,10 @@ Player::Player() {
 
 	b->CreateFixture(&fixtureDef);
 	b->SetLinearDamping(4.0f);
+
+	laserSoundBuffer.LoadFromFile("media/player-shoot.wav");
+	laserSound.SetBuffer(laserSoundBuffer);
+	laserSound.SetVolume(50);
 }
 
 void Player::update() {
@@ -77,4 +81,5 @@ void Player::tryToShoot() {
 void Player::shoot() {
 	shotClock.Reset();
 	printf("shoot!\n");
+	laserSound.Play();
 }
