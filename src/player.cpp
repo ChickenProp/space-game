@@ -12,6 +12,9 @@ Player::Player() {
 	s.SetPosition(50, 240);
 	screenLeft = 0;
 
+	setRateOfFire(10);
+	shotClock.Reset();
+
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(0.50f, 2.40f);
@@ -51,10 +54,27 @@ void Player::update() {
 	sf::Vector2f mouse = Gmouse - s.GetPosition();
 
 	b->SetTransform(b->GetPosition(), -atan2(mouse.y, mouse.x));
+
+	if (in.IsMouseButtonDown(sf::Mouse::Left))
+		tryToShoot();
 }
 
 void Player::draw() {
 	s.SetPosition(b2s( 100.0f * b->GetPosition() + b2Vec2(screenLeft, 0) ));
 	s.SetRotation(r2d(b->GetAngle()));
 	G::window.Draw(s);
+}
+
+void Player::setRateOfFire(float r) {
+	fireDelay = 1.0f / r;
+}
+
+void Player::tryToShoot() {
+	if (shotClock.GetElapsedTime() > fireDelay)
+		shoot();
+}
+
+void Player::shoot() {
+	shotClock.Reset();
+	printf("shoot!\n");
 }

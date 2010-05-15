@@ -15,6 +15,12 @@ public:
 
 	virtual void update();
 	void draw();
+
+	float fireDelay;
+	sf::Clock shotClock;
+	void setRateOfFire(float r);
+	void tryToShoot();
+	void shoot();
 };
 
 #endif
