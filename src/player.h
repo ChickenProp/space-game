@@ -2,23 +2,18 @@
 #define _PLAYER_H
 
 #include <SFML/Graphics.hpp>
+#include "body.h"
 
-class Player {
+class Player : public Body {
 public:
 	Player();
 	sf::Image image;
-	sf::Sprite s;
 
 	sf::Vector2f zeroVel;
 
-	sf::Vector2f vel;
-	sf::Vector2f acc;
-
 	float screenLeft;
 
-	void update();
-
-	void accelerate(sf::Vector2f v);
+	virtual void update();
 };
 
 #endif
