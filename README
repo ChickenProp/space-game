@@ -1,0 +1,6 @@
+To build: make
+To run: ./space-game
+
+WASD to move, mouse to point, click to shoot. If you're on dvorak, edit conf.h to get ,AOE for movement.
+
+That's all there is.
