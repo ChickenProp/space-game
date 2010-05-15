@@ -17,6 +17,7 @@ void processEvent(sf::Event e) {
 int main (int argv, char **argc) {
 	G::window.Create(sf::VideoMode(800, 480, 32), "Space shooter");
 	G::window.SetFramerateLimit(60);
+	G::window.SetCursorPosition(400, 240);
 
 	sf::View view(sf::FloatRect(0, 0, 800, 480));
 	G::window.SetView(view);

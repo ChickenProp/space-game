@@ -3,24 +3,15 @@
 #include "math.h"
 #include "conf.h"
 
-#if DVORAK
-#  define KEY_UP sf::Key::Comma
-#  define KEY_DOWN sf::Key::O
-#  define KEY_LEFT sf::Key::A
-#  define KEY_RIGHT sf::Key::E
-#else
-#  define KEY_UP sf::Key::W
-#  define KEY_DOWN sf::Key::S
-#  define KEY_LEFT sf::Key::A
-#  define KEY_RIGHT sf::Key::D
-#endif
-
 Player::Player() {
-	vel = sf::Vector2f(1, 0);
+	zeroVel = sf::Vector2f(1, 0);
+	vel = sf::Vector2f(0, 0);
+	acc = sf::Vector2f(0, 0);
 	image.LoadFromFile("media/player-ship.tga");
+
 	s.SetImage(image);
-	s.SetPosition(50, 208);
-	s.SetCenter(32, 32);
+	s.SetCenter((float)image.GetWidth()/2, (float)image.GetHeight()/2);
+	s.SetPosition(50, 240);
 	screenLeft = 0;
 }
 
@@ -29,18 +20,22 @@ void Player::update() {
 
 	const sf::Input &in = G::window.GetInput();
 
-	vel = sf::Vector2f(1, 0);
+	acc = sf::Vector2f(0,0);
 
 	if (in.IsKeyDown(KEY_UP))
-		vel += sf::Vector2f(0, -1);
+		acc += sf::Vector2f(0, -1);
 	if (in.IsKeyDown(KEY_DOWN))
-		vel += sf::Vector2f(0, 1);
+		acc += sf::Vector2f(0, 1);
 	if (in.IsKeyDown(KEY_LEFT))
-		vel += sf::Vector2f(-1, 0);
+		acc += sf::Vector2f(-1, 0);
 	if (in.IsKeyDown(KEY_RIGHT))
-		vel += sf::Vector2f(1, 0);
+		acc += sf::Vector2f(1, 0);
 
-	s.Move(vel);
+	acc -= vel/10.0f;
+
+	vel += acc;
+
+	s.Move(vel + zeroVel);
 
 	sf::Vector2f Gmouse(in.GetMouseX()+screenLeft, in.GetMouseY());
 	sf::Vector2f mouse = Gmouse - s.GetPosition();
