@@ -9,6 +9,7 @@ public:
 	sf::Sprite s;
 	b2Body *b;
 	virtual void update();
+	virtual void draw();
 };
 
 #endif

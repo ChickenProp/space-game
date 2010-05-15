@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "globals.h"
 #include "player.h"
+#include "world.h"
 
 void processEvent(sf::Event e) {
 	switch (e.Type) {
@@ -21,6 +22,8 @@ int main (int argv, char **argc) {
 
 	G::physics = new b2World(b2Vec2(0,0), 1);
 	G::player = new Player();
+	G::world = new World();
+	G::world->addBody(G::player);
 
 	sf::View view(sf::FloatRect(0, 0, 800, 480));
 	G::window.SetView(view);
@@ -41,7 +44,7 @@ int main (int argv, char **argc) {
 		if (!G::window.IsOpened())
 			break;
 
-		G::player->update();
+		G::world->update();
 
 		G::physics->Step(1.0f/60, 10, 10);
 
@@ -55,7 +58,7 @@ int main (int argv, char **argc) {
 
 		G::window.Draw(bgSprite1);
 		G::window.Draw(bgSprite2);
-		G::player->draw();
+		G::world->draw();
 		G::window.Display();
 	}
 }

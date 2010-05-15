@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
 #include "player.h"
+#include "world.h"
 #include "math.h"
 
 class G {
@@ -11,6 +12,7 @@ public:
 	static sf::RenderWindow window;
 	static Player *player;
 	static b2World *physics;
+	static World *world;
 };
 
 inline float r2d (float r) {
