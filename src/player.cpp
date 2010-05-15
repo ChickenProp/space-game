@@ -20,11 +20,11 @@ Player::Player() {
 	b = G::physics->CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(0.2f, 0.1f);
+	dynamicBox.SetAsBox(0.27f, 0.09f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 1.0f / (0.2f * 0.1f);
+	fixtureDef.density = 1.0f / (0.27f * 0.09f);
 	fixtureDef.friction = 0.0f;
 
 	b->CreateFixture(&fixtureDef);
